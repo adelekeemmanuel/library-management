@@ -111,6 +111,25 @@ Meaning:
 * Every borrowing action creates a lending record
 
 
+-----
+
+
+## API Documentation
+
+This project includes a Postman collection for API documentation and testing.
+
+Location:
+postman/library-management.postman_collection.json
+
+To use:
+1. Open Postman
+2. Click Import
+3. Select the JSON file
+4. Run the requests
+
+
+
+
 ---
 
 # 📦 API JSON Examples
