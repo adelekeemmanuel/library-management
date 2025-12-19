@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "d7b511e2-9939-4d9e-ab17-23824a7922d4",
+		"name": "Library Management API",
+		"description": "REST API documentation for the Library Management System built with Spring Boot.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43635751",
+		"_collection_link": "https://emmanuel-7696508.postman.co/workspace/Emmanuel's-Workspace~68f9edd4-3ad2-4af3-86c0-38e4472b5d5c/collection/43635751-d7b511e2-9939-4d9e-ab17-23824a7922d4?action=share&source=collection_link&creator=43635751"
+	},
+	"item": [
+		{
+			"name": "BOOK REQUESTS",
+			"item": [
+				{
+					"name": "Create Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Clean Code\",\r\n  \"author\": \"Robert Martin\",\r\n  \"isbn\": \"9780132350800\",\r\n  \"totalCopies\": 10\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							]
+						},
+						"description": "This endpoint creates a new book in the library system.\n\nIt stores the book’s title, author, ISBN, and total number of copies.\n\nThe available copies are automatically set to match the total copies."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							]
+						},
+						"description": "This endpoint retrieves a list of all books available in the library system."
+					},
+					"response": []
+				},
+				{
+					"name": "Search Book by Title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/search/title?title=clean",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"search",
+								"title"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "clean"
+								}
+							]
+						},
+						"description": "This endpoint searches for books whose titles contain the given keyword.\n\nIt supports partial and case-insensitive matching."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BORROWER REQUESTS",
+			"item": [
+				{
+					"name": "Create Borrower",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john@gmail.com\",\r\n  \"memberId\": \"AER001\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/borrowers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"borrowers"
+							]
+						},
+						"description": "This endpoint registers a new borrower in the library system.  \n  \nEach borrower must have a unique email address and member ID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LENDING REQUESTS",
+			"item": [
+				{
+					"name": "Borrow Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 10,\r\n  \"borrowerId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/lending/borrow",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lending",
+								"borrow"
+							]
+						},
+						"description": "This endpoint allows a borrower to borrow a book from the library.  \n  \nThe system checks that both the book and borrower exist and that copies are available.  \n  \nIf successful, available copies are reduced and a lending record is created with a due date."
+					},
+					"response": []
+				},
+				{
+					"name": "Return Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"lendingRecordId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/lending/return",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"lending",
+								"return"
+							]
+						},
+						"description": "This endpoint processes the return of a borrowed book.  \n  \nIt updates the lending record, marks the return date, and increases the book’s available copies."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
